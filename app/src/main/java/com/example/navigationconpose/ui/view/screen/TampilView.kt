@@ -18,7 +18,7 @@ import com.example.navigationconpose.model.RencanaStudi
 fun TampilanMahasiswaView(
     mhs: Mahasiswa,
     rs : RencanaStudi,
-    onBackClick: () -> Unit
+    onBackButtonClick: () -> Unit
 ){
     Column (modifier = Modifier.padding().fillMaxSize()){
         TampilData(
@@ -45,7 +45,7 @@ fun TampilanMahasiswaView(
 
 
         Button(
-            onClick = onBackClick,
+            onClick = onBackButtonClick,
             modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
         ) {
             Text("Kembali")
