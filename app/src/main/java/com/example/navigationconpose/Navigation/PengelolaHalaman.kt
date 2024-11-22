@@ -11,30 +11,57 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationconpose.ui.view.screen.MahasiswaFormView
+import com.example.navigationconpose.ui.view.screen.RencanaStudyView
 import com.example.navigationconpose.ui.view.screen.SplashView
 import com.example.navigationconpose.ui.view.viewmodel.MahasiswaViewModel
+import com.example.navigationconpose.ui.view.viewmodel.RencanaStudyViewModel
 
 enum class Halaman{
     Splash,
-    Mahasiswa
+    Mahasiswa,
+    MataKuliah,
+    Tampil
 }
 
 @Composable
 fun MahasiswaApp(
     modifier: Modifier = Modifier,
     mahasiswaViewModel: MahasiswaViewModel = viewModel(),
-    navHostController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    krsViewModel: RencanaStudyViewModel = viewModel()
 ){
     val mahasiswaUiState = mahasiswaViewModel.mahasiswaUiState.collectAsState().value
 
     NavHost(
-        navController = navHostController,
+        navController = navController,
         startDestination =  Halaman.Splash.name,
         modifier = Modifier.padding()
     ) {
         composable(route = Halaman.Splash.name){
             SplashView (
-                onMulaiButton = {}
+                onMulaiButton = {
+                    navController.navigate(
+                        Halaman.Mahasiswa.name
+                    )
+                }
+            )
+        }
+        composable(route = Halaman.Mahasiswa.name){
+            MahasiswaFormView(
+                onSubmitButton = {
+                    mahasiswaViewModel.saveDataMahasiswa(it)
+                    navController.navigate(Halaman.MataKuliah.name)
+                },
+                onBackButtonClicked = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(route = Halaman.MataKuliah.name){
+            RencanaStudyView(
+                mahasiswa = mahasiswaUiState,
+                onSubmitButtonClicked = {krsViewModel.saveDataKRS(it)},
+                onBackButtonClicked = {navController.popBackStack()}
             )
         }
     }
