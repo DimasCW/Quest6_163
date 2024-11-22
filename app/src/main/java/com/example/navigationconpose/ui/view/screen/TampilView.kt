@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.navigationconpose.model.Mahasiswa
 import com.example.navigationconpose.model.RencanaStudi
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun TampilanMahasiswaView(
@@ -20,7 +22,13 @@ fun TampilanMahasiswaView(
     rs : RencanaStudi,
     onBackButtonClick: () -> Unit
 ){
-    Column (modifier = Modifier.padding().fillMaxSize()){
+    Column (
+        modifier = Modifier
+            .padding()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+
+    ){
         TampilData(
             judul = "Nama",
             isinya = mhs.nama
@@ -46,7 +54,9 @@ fun TampilanMahasiswaView(
 
         Button(
             onClick = onBackButtonClick,
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            modifier = Modifier
+                .padding(top = 16.dp),
+
         ) {
             Text("Kembali")
         }
