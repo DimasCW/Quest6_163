@@ -36,3 +36,19 @@ fun TampilanMahasiswaView(
 
 
 
+@Composable
+fun TampilData(
+    judul: String,
+    isinya: String
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween // Mengatur jarak antar elemen
+    ) {
+        Text(judul, modifier = Modifier.weight(0.8f)) // Label judul
+        Text(":", modifier = Modifier.weight(0.2f)) // Titik dua
+        Text(isinya, modifier = Modifier.weight(2f)) // Isi dari data
+    }
+}
