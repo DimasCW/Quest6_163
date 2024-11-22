@@ -21,6 +21,27 @@ fun TampilanMahasiswaView(
     onBackClick: () -> Unit
 ){
     Column (modifier = Modifier.padding().fillMaxSize()){
+        TampilData(
+            judul = "Nama",
+            isinya = mhs.nama
+        )
+        TampilData(
+            judul = "Nim",
+            isinya = mhs.nim
+        )
+        TampilData(
+            judul = "Email",
+            isinya = mhs.email
+        )
+        TampilData(
+            judul = "Nama MataKuliah",
+            isinya = rs.namaMK
+        )
+
+        TampilData(
+            judul = "Kelas",
+            isinya = rs.kelas
+        )
 
 
         Button(
